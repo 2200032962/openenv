@@ -1,0 +1,5 @@
+{
+  "name": "CloudOps OpenEnv",
+  "description": "A real-world cloud infrastructure management simulator for AI agents following the OpenEnv spec.",
+  "requestFramePermissions": []
+}

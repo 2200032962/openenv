@@ -1,0 +1,47 @@
+name: cloudops-v1
+version: 1.0.0
+description: A cloud infrastructure management simulator for AI agents.
+entry_point: app:app
+tasks:
+  - id: idle-server
+    difficulty: easy
+    description: Identify and stop the idle server 'srv-04' to save costs.
+  - id: scale-cluster
+    difficulty: medium
+    description: Scale the 'web-cluster' to 5 nodes to handle incoming traffic spike.
+  - id: outage-recovery
+    difficulty: hard
+    description: Recover from a database outage. Restart 'db-master' then 'api-gw'.
+observation_space:
+  type: object
+  properties:
+    servers:
+      type: array
+      items:
+        $ref: "#/definitions/Server"
+    total_cost:
+      type: number
+    uptime_percentage:
+      type: number
+    message:
+      type: string
+action_space:
+  type: object
+  properties:
+    type:
+      type: string
+      enum: [stop_server, start_server, scale_cluster, restart_service, noop]
+    target_id:
+      type: string
+    value:
+      type: any
+definitions:
+  Server:
+    type: object
+    properties:
+      id: {type: string}
+      name: {type: string}
+      status: {type: string}
+      cpu_usage: {type: number}
+      memory_usage: {type: number}
+      cost_per_hour: {type: number}
